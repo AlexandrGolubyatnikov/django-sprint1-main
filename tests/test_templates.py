@@ -15,7 +15,7 @@ from tests.conftest import try_get_url
         ('category/category_slug/', 'blog/category.html'),
         ('pages/about/', 'pages/about.html'),
         ('pages/rules/', 'pages/rules.html'),
-    ]
+    ]   
 )
 def test_page_templates(client, url, template):
     url = f'/{url}' if url else '/'
