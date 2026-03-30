@@ -52,12 +52,17 @@ def index(request):
     return render(request, template, context)
 
 
+posts_dict = {post["id"]: post for post in posts}
+
+
 def post_detail(request, id):
     template = "blog/detail.html"
-    for post in posts:
-        if post["id"] == id:
-            return render(request, template, {"post": post})
-    raise Http404
+
+    try:
+        post = posts_dict[id]
+        return render(request, template, {"post": post})
+    except KeyError:
+        raise Http404(f"Пост с ID {id} не найден")
 
 
 def category_posts(request, category_slug):
